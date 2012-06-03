@@ -7,7 +7,7 @@ import (
 
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
-//	http.HandleFunc("/", rootHandler)
-	http.Handle("/", http.FileServer(http.Dir("/www")))
+	http.HandleFunc("/", rootHandler)
+//	http.Handle("/", http.FileServer(http.Dir("/www")))
 	http.ListenAndServe(":8080", nil)
 }

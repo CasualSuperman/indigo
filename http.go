@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"os"
 	"net/http"
@@ -22,6 +23,10 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusNotImplemented)
 		}
 	} else {
+		session := GetSession(r)
+		fmt.Println(session)
+		session.Values["hello"] = "world"
+		session.Save(r, w)
 		io.Copy(w, file)
 		file.Close()
 	}
